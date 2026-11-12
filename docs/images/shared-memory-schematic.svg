@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+<title id="title">DirtyDataSharing · unsafe shared-memory sketch</title><desc id="desc">Conceptual diagram of the original code. No synchronization, bounds safety or runtime success is implied.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#64748b"/></marker></defs>
+<style>text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#172b3a}.title{font-size:24px;font-weight:700}.sub{font-size:14px;fill:#526575}.head{font-size:19px;font-weight:700}.body{font-size:14px}.mono{font-size:13px;font-family:Menlo,Consolas,monospace}.note{font-size:13px;fill:#526575}</style>
+<rect width="960" height="360" rx="16" fill="#f8fafc"/>
+<text x="28" y="42" class="title">DirtyDataSharing · unsafe shared-memory sketch</text>
+<text x="28" y="68" class="sub">Conceptual diagram of the original code. No synchronization, bounds safety or runtime success is implied.</text>
+<rect x="28" y="100" width="276" height="164" rx="14" fill="#eef2ff" stroke="#6877d9" stroke-width="1.5"/>
+<text x="46" y="132" class="head">1. Producer process</text>
+<text x="46" y="162" class="body">Server.h</text>
+<text x="46" y="187" class="body">Create and map named memory</text>
+<text x="46" y="212" class="body">Copy bytes at an offset</text>
+<path d="M307 182 H334" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="342" y="100" width="276" height="164" rx="14" fill="#fff7ed" stroke="#d28b2e" stroke-width="1.5"/>
+<text x="360" y="132" class="head">2. Shared memory</text>
+<text x="360" y="162" class="body">1 MiB data array</text>
+<text x="360" y="187" class="body">Struct also declares a mutex</text>
+<text x="360" y="212" class="body">The copies do not lock it</text>
+<path d="M621 182 H648" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="656" y="100" width="276" height="164" rx="14" fill="#ecfdf5" stroke="#31a77f" stroke-width="1.5"/>
+<text x="674" y="132" class="head">3. Consumer process</text>
+<text x="674" y="162" class="body">Client.h / getShared.cpp</text>
+<text x="674" y="187" class="body">Open and map the same name</text>
+<text x="674" y="212" class="body">Copy requested bytes out</text>
+<text x="28" y="302" class="note">UNSAFE EXPERIMENT: no active locking, no bounds checks and no complete error-handling contract.</text>
+<text x="28" y="325" class="note">Illustration only. Original implementation remains unchanged; it was not executed for this README update.</text>
+</svg>
